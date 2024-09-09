@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, init
+ ial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #table{
+            width: 500px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+<table border="2px solid black" id="table">
+    <tr>
+        <td style="width: 100px; height: 100px; vertical-align: top;">A</td>
+        <td rowspan="2" style="width: 100px; height: 100px; vertical-align: top; " align="right">C</td>
+        <td colspan="2" rowspan="2" style="width: 100px; height: 100px;">
+            <table border="1px solid black" id="table1"
+                   align="center">
+                <tr>
+                    <td  style="width: 50px; height: 50px;" align="center">K</td>
+                    <td rowspan="2" style="width: 50px;
+height: 50px; vertical-align: top;" align="center">N</td>
+                </tr>
+                <tr>
+                    <td style="width: 50px; height: 50p
+ x; vertical-align: bottom;" align="center">L</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr >
+        <td style="width: 100px; height: 100px; vertical-align: top;"align="right">B</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="width: 100px; height: 100px; vertical-align: bottom;" >D</td>
+        <td rowspan="3" style="width: 100px; height: 100px; vertical-align: bottom;" align="right">H</td>
+        <td style="vertical-align: bottom;" align="righ
+ t">J</td>
+    </tr>
+    <tr>
+        <td style="width: 100px; height: 100px;" align
+                ="center">E</td>
+        <td rowspan="2" style="width: 100px; height: 100px;" align="right">G</td>
+        <td rowspan="2" style="width: 100px; height: 100px; vertical-align: top;" align="right">I</td>
+    </tr>
+    <tr>
+        <td style="width: 100px; height: 100px;">F</td>
+    </tr>
+</table>
+</body>
+</html>

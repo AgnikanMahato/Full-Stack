@@ -1,0 +1,217 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9ebee;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.header {
+    background-color: #3b5998;
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+
+.logo h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+}
+
+.login form {
+    display: flex;
+    align-items: center;
+}
+
+.login-field {
+    margin-right: 10px;
+}
+
+.login-field label {
+    font-size: 12px;
+    display: block;
+}
+
+.login-field input {
+    padding: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 3px;
+    width: 140px;
+}
+
+.login button {
+    padding: 5px 10px;
+    background-color: #4c69ba;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.forgotten {
+    margin-left: 10px;
+    color: #8b9dc3;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+}
+
+.left-content {
+    margin-right: 50px;
+    width: 380px;
+}
+
+.left-content p {
+    font-size: 28px;
+    line-height: 32px;
+    color: #333;
+}
+
+.left-content img {
+    width: 100%;
+}
+
+.right-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 380px;
+}
+
+.right-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.right-content p {
+    font-size: 14px;
+    color: #666;
+}
+
+.right-content form input {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.birthday {
+    margin-top: 10px;
+}
+
+.birthday label {
+    display: block;
+    font-size: 12px;
+    color: #333;
+}
+
+.birthday select {
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
+}
+
+.birthday a {
+    font-size: 12px;
+    color: #385898;
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+}
+
+.gender {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.gender label {
+    margin-right: 10px;
+}
+
+.gender input {
+    margin-right: 5px;
+}
+
+.signup {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* Media Query for Mobile Devices */
+@media screen and (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .header .logo h1 {
+        font-size: 24px;
+    }
+
+    .login {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .login form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .login-field input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .login button {
+        width: 100%;
+    }
+
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .left-content {
+        margin-right: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .right-content {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
