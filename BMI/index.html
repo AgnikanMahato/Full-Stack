@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gauge-container {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .gauge {
+            transform: rotate(-90deg); /* Rotates the gauge so 0 starts at the top */
+        }
+
+        .gauge circle {
+            fill: none;
+            stroke-width: 20;
+        }
+
+        .gauge-bg {
+            stroke: #e6e6e6; /* Background color of the gauge */
+        }
+
+        .gauge-fill {
+            stroke: #00bfff; /* Default color of the gauge progress */
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.3s ease, stroke 0.3s ease; /* Add transition for color change */
+        }
+
+        .gauge-text {
+            font-size: 24px;
+            fill: #333;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center">BMI Calculator</h2>
+
+                        <div class="form-group">
+                            <label for="weight">Weight (in Kg)</label>
+                            <input type="number" class="form-control" id="weight" placeholder="Weight in Kg" min="0" step="any">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="height">Height (in meters)</label>
+                            <input type="number" class="form-control" id="height" placeholder="Height in meters" min="0" step="any">
+                        </div>
+
+                        <button class="btn btn-primary btn-block" onclick="calculateBMI()">Calculate</button>
+
+                        <div class="mt-3">
+                            <p id="result" class="font-weight-bold"></p>
+                            <p id="remarks" class="text-info"></p>
+                        </div>
+
+                        <!-- Gauge to display BMI -->
+                        <div class="gauge-container">
+                            <svg class="gauge" width="100%" height="100%" viewBox="0 0 100 100">
+                                <circle class="gauge-bg" cx="50" cy="50" r="40"></circle>
+                                <circle class="gauge-fill" cx="50" cy="50" r="40" stroke-dasharray="251" stroke-dashoffset="251"></circle>
+                                <text class="gauge-text" x="50%" y="50%" id="gaugeText" transform="rotate(90, 50, 50)">0</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to calculate BMI
+        function calculateBMI() {
+            var weight = parseFloat(document.getElementById('weight').value);
+            var height = parseFloat(document.getElementById('height').value);
+
+            // Check for valid inputs
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                document.getElementById('result').innerText = "Please enter valid numbers for weight and height.";
+                return;
+            }
+
+            // Calculate BMI
+            var bmi = weight / Math.pow(height, 2);
+
+            // Display result with 2 decimal places
+            document.getElementById('result').innerText = 'The BMI is: ' + bmi.toFixed(2);
+
+            // Update remarks based on BMI
+            let remarksText = "";
+            if (bmi < 18.5) {
+                remarksText = 'Under Weight';
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                remarksText = 'Normal (Healthy Weight)';
+            } else if (bmi >= 25.0 && bmi <= 29.9) {
+                remarksText = 'Overweight';
+            } else if (bmi >= 30.0 && bmi <= 34.9) {
+                remarksText = 'Obesity Class I (Moderate)';
+            } else if (bmi >= 35.0 && bmi <= 39.9) {
+                remarksText = 'Obesity Class II (Severe)';
+            } else if (bmi >= 40.0) {
+                remarksText = 'Obesity Class III (Very Severe or Morbid Obesity)';
+            }
+
+            document.getElementById('remarks').innerText = remarksText;
+
+            // Update the gauge based on BMI
+            updateGauge(bmi);
+        }
+
+        // Function to update the gauge
+        function updateGauge(bmi) {
+            // Cap BMI at 40 for the gauge, as the gauge range is 0-40
+            let gaugeValue = Math.min(bmi, 40);
+            const gaugeFill = document.querySelector('.gauge-fill');
+            const gaugeText = document.getElementById('gaugeText');
+
+            // Calculate the stroke-dashoffset based on BMI
+            const dashOffset = 251 - (251 * gaugeValue) / 40;
+
+            // Determine the color based on BMI
+            let color;
+            if (bmi < 18.5) {
+                color = 'blue'; // Example color for underweight
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                color = 'green'; // Normal (Healthy Weight)
+            } else if (bmi >= 25.0 && bmi <= 29.9) {
+                color = 'yellow'; // Overweight
+            } else if (bmi >= 30.0 && bmi <= 34.9) {
+                color = 'orange'; // Obesity Class I (Moderate)
+            } else if (bmi >= 35.0 && bmi <= 39.9) {
+                color = 'red'; // Obesity Class II (Severe)
+            } else if (bmi >= 40.0) {
+                color = 'darkred'; // Obesity Class III (Very Severe or Morbid Obesity)
+            }
+
+            // Update the gauge fill color and text
+            gaugeFill.style.strokeDashoffset = dashOffset;
+            gaugeFill.style.stroke = color;
+            gaugeText.textContent = gaugeValue.toFixed(1);
+        }
+    </script>
+
+</body>
+
+</html>
